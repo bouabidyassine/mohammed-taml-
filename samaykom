@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassine Bouabid | Mechanical Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light mode colors */
+            --light-primary: #ffffff;
+            --light-secondary: #f0f5ff;
+            --light-accent: #0066cc;
+            --light-text: #333333;
+            --light-text-secondary: #666666;
+            --light-card: #ffffff;
+            --light-shadow: rgba(0, 0, 0, 0.1);
+            
+            /* Dark mode colors */
+            --dark-primary: #0a192f;
+            --dark-secondary: #112240;
+            --dark-accent: #64ffda;
+            --dark-text: #e6f1ff;
+            --dark-text-secondary: #8892b0;
+            --dark-card: #112240;
+            --dark-shadow: rgba(2, 12, 27, 0.7);
+            
+            /* Common variables */
+            --primary: var(--light-primary);
+            --secondary: var(--light-secondary);
+            --accent: var(--light-accent);
+            --text: var(--light-text);
+            --text-secondary: var(--light-text-secondary);
+            --card: var(--light-card);
+            --shadow: var(--light-shadow);
+            
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px var(--shadow);
+            --section-padding: 120px 5%;
+        }
+
+        /* Dark mode */
+        .dark-mode {
+            --primary: var(--dark-primary);
+            --secondary: var(--dark-secondary);
+            --accent: var(--dark-accent);
+            --text: var(--dark-text);
+            --text-secondary: var(--dark-text-secondary);
+            --card: var(--dark-card);
+            --shadow: var(--dark-shadow);
+        }
+
+        /* Arabic mode */
+        .arabic-mode {
+            direction: rtl;
+            font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.5s ease;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(100, 255, 218, 0.05) 0%, transparent 25%);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .dark-mode body::before {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(100, 255, 218, 0.03) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255, 45, 117, 0.03) 0%, transparent 30%);
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) translateX(100px) rotate(360deg); }
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 15px 35px var(--shadow);
+        }
+
+        /* Header */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            z-index: 100;
+            box-shadow: 0 5px 20px var(--shadow);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .arabic-mode nav a::after {
+            left: auto;
+            right: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: var(--section-padding);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            display: block;
+            animation: textGlow 3s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(0, 102, 204, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(0, 102, 204, 0.6); }
+        }
+
+        .dark-mode .hero h1 span {
+            animation: textGlowDark 3s infinite alternate;
+        }
+
+        @keyframes textGlowDark {
+            0% { text-shadow: 0 0 5px rgba(100, 255, 218, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(100, 255, 218, 0.6); }
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero p {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .dark-mode .btn-primary {
+            background: var(--accent);
+            color: var(--dark-primary);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.5);
+        }
+
+        .dark-mode .btn-primary:hover {
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.5);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 102, 204, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .dark-mode .btn-outline:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--accent), #0066cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: floatImage 8s infinite alternate;
+            box-shadow: 0 0 50px rgba(0, 102, 204, 0.3);
+            border: 5px solid rgba(255,255,255,0.1);
+        }
+
+        .hero-image img {
+            width: 95%;
+            height: 95%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+        }
+
+        .dark-mode .hero-image {
+            background: linear-gradient(145deg, var(--accent), #0a192f);
+            box-shadow: 0 0 50px rgba(100, 255, 218, 0.3);
+            border: 5px solid rgba(255,255,255,0.05);
+        }
+
+        @keyframes floatImage {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-53%) scale(1.05); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+
+        /* Sections */
+        section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 5px;
+            animation: expandLine 1.5s ease-out;
+        }
+
+        @keyframes expandLine {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        .arabic-mode .section-header h2::after {
+            left: auto;
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 30px auto 0;
+            line-height: 1.8;
+            font-size: 1.2rem;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transform-style: preserve-3d;
+        }
+
+        .dark-mode .card {
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px);
+            box-shadow: 0 15px 50px var(--shadow);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card .date {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .arabic-mode .card ul {
+            padding-right: 20px;
+            padding-left: 0;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '•';
+            color: var(--accent);
+            position: absolute;
+            left: -15px;
+        }
+
+        .arabic-mode .card li::before {
+            left: auto;
+            right: -15px;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .skill-bar {
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            position: relative;
+            animation: fillBar 2s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            box-shadow: var(--box-shadow);
+            animation: fadeInUp 1s ease-out;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.8s ease;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 40px 25px 25px;
+            transform: translateY(100px);
+            transition: transform 0.6s ease;
+            color: white;
+        }
+
+        .dark-mode .project-overlay {
+            background: linear-gradient(to top, rgba(10, 25, 47, 0.9), transparent);
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .project-overlay h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .project-date {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        /* Contact */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 20px;
+            background: var(--card);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .dark-mode .contact-item {
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(0, 102, 204, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 1.8rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .dark-mode .contact-icon {
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-details h3 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+        }
+
+        /* CV Download Section */
+        .cv-section {
+            text-align: center;
+            padding: 100px 10%;
+            background: var(--secondary);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        .dark-mode .cv-section {
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .cv-container h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .cv-container p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .cv-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 5% 40px;
+            background: var(--secondary);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        .dark-mode footer {
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-10px) rotate(10deg);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Animations */
+        .animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-image {
+                width: 350px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+            
+            .hero-image {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin: 50px auto 0;
+                width: 280px;
+                height: 280px;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .controls {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .cv-btns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Controls for Dark Mode and Language -->
+    <div class="controls">
+        <div class="control-btn" id="darkModeToggle">
+            <i class="fas fa-moon"></i>
+        </div>
+        <div class="control-btn" id="languageToggle">
+            <i class="fas fa-globe"></i>
+        </div>
+    </div>
+
+    <!-- Language Selector Dropdown -->
+    <div class="language-selector" id="languageSelector" style="display: none; position: fixed; top: 85px; right: 20px; background: var(--card); border-radius: var(--border-radius); box-shadow: var(--box-shadow); z-index: 1000; padding: 15px; width: 150px;">
+        <div class="language-option" data-lang="en">English</div>
+        <div class="language-option" data-lang="fr">Français</div>
+        <div class="language-option" data-lang="ar">العربية</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo"><i class="fas fa-cogs"></i>Y<span>B</span></a>
+        <nav>
+            <ul>
+                <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="#profile" data-i18n="nav.profile">Profile</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="#cv" data-i18n="nav.cv">CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content animate">
+            <h1 data-i18n="hero.title">Yassine <span>Bouabid</span></h1>
+            <h2 data-i18n="hero.subtitle">Future Engineer in Mechanical Design & Simulation</h2>
+            <p data-i18n="hero.description">Specialized in CAD (CATIA V5, SolidWorks), FEA simulation (Abaqus, Ansys) and numerical modeling applied to smart mechanical systems. Passionate about innovation, robotics and advanced technologies in automotive and aerospace sectors.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary" data-i18n="hero.contactBtn">Get in Touch</a>
+                <a href="#projects" class="btn btn-outline" data-i18n="hero.projectsBtn">View Projects</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Yassine Bouabid">
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <div class="section-header">
+            <h2 data-i18n="profile.title">Professional Profile</h2>
+            <p data-i18n="profile.description">Curious, rigorous and passionate about innovation, robotics and advanced technologies in automotive and aerospace sectors. Analytical mind, great adaptability, good communication skills.</p>
+        </div>
+        <div class="card-grid">
+            <div class="card animate">
+                <i class="fas fa-graduation-cap" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 25px;"></i>
+                <h3 data-i18n="profile.educationTitle">Education</h3>
+                <p data-i18n="profile.education1">Master in Numerical Design and Simulation in Mechanics at Faculty of Sciences Ain Chock - Center of Excellence in Mechatronics, Casablanca (2024-2026)</p>
+                <p data-i18n="profile.education2">Bachelor in Numerical Design and Simulation in Mechanics at Faculty of Sciences Ain Chock (2023-2024)</p>
+            </div>
+            <div class="card animate">
+                <i class="fas fa-certificate" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 25px;"></i>
+                <h3 data-i18n="profile.certificationsTitle">Certifications</h3>
+                <ul>
+                    <li data-i18n="profile.cert1">Modeling and simulation of mechanical systems - Coursera</li>
+                    <li data-i18n="profile.cert2">Automotive industrial engineering - Coursera</li>
+                    <li data-i18n="profile.cert3">Digital manufacturing and design - Coursera</li>
+                    <li data-i18n="profile.cert4">Finite element analysis with Abaqus - Skill-Lync</li>
+                    <li data-i18n="profile.cert5">CATIA V5 - Beginner to advanced level - Udemy</li>
+                </ul>
+            </div>
+            <div class="card animate">
+                <i class="fas fa-language" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 25px;"></i>
+                <h3 data-i18n="profile.languagesTitle">Languages & Interests</h3>
+                <p><strong data-i18n="profile.languages">Languages:</strong> <span data-i18n="profile.langList">Arabic (Native), French (Fluent), English (Fluent)</span></p>
+                <p><strong data-i18n="profile.interests">Interests:</strong> <span data-i18n="profile.interestsList">Online competitions (coding, creativity, challenges), reading scientific and science-fiction books, writing technical articles for social media, creative video editing.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background: var(--secondary);">
+        <div class="section-header">
+            <h2 data-i18n="experience.title">Professional Experience</h2>
+            <p data-i18n="experience.description">Combining technical expertise with innovative problem-solving skills</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="card animate">
+                <h3 data-i18n="experience.job1.title">Mechanical Design Intern</h3>
+                <span class="date" data-i18n="experience.job1.date">June - October 2024</span>
+                <p><strong data-i18n="experience.job1.company">Commune de Oulad Ali Toualaa, Casablanca, Morocco</strong></p>
+                <ul>
+                    <li data-i18n="experience.job1.point1">Updated 15 technical diagrams and contributed to documentary standardization</li>
+                    <li data-i18n="experience.job1.point2">Conducted 5 CAD training sessions for technical staff, enhancing their 3D modeling skills</li>
+                    <li data-i18n="experience.job1.point3">Developed automated calculation tools in VBA to accelerate technical file preparation</li>
+                </ul>
+            </div>
+            
+            <div class="card animate">
+                <h3 data-i18n="experience.job2.title">Volunteer - Humanitarian Operations</h3>
+                <span class="date" data-i18n="experience.job2.date">April 2024</span>
+                <p><strong data-i18n="experience.job2.company">Association Lueur d'Espoir, Casablanca, Morocco</strong></p>
+                <ul>
+                    <li data-i18n="experience.job2.point1">Organized and distributed over 200 food aid packages during Ramadan</li>
+                    <li data-i18n="experience.job2.point2">Awareness and social actions for community solidarity</li>
+                </ul>
+            </div>
+            
+            <div class="card animate">
+                <h3 data-i18n="experience.job3.title">Electromechanical Technician Intern (PFE)</h3>
+                <span class="date" data-i18n="experience.job3.date">February - May 2021</span>
+                <p><strong data-i18n="experience.job3.company">Sahara Plomb, Casablanca, Morocco</strong></p>
+                <ul>
+                    <li data-i18n="experience.job3.point1">Preventive and corrective maintenance on industrial equipment, reducing machine downtime by 20%</li>
+                    <li data-i18n="experience.job3.point2">Diagnosed and resolved failures in complex electrical and mechanical systems</li>
+                    <li data-i18n="experience.job3.point3">Participated in drafting over 10 technical reports</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <h2 data-i18n="skills.title">Technical Skills</h2>
+            <p data-i18n="skills.description">Expertise in mechanical design, simulation and advanced engineering tools</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category animate">
+                <h3><i class="fas fa-cube"></i> <span data-i18n="skills.design">Design & Simulation</span></h3>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>CATIA V5</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>SolidWorks</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Abaqus</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Ansys Fluent</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category animate">
+                <h3><i class="fas fa-cogs"></i> <span data-i18n="skills.engineering">Mechanical Engineering</span></h3>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span data-i18n="skills.matResistance">Material Resistance</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span data-i18n="skills.thermo">Thermodynamics</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span data-i18n="skills.aero">Aerodynamics</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span data-i18n="skills.maintenance">Industrial Maintenance</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category animate">
+                <h3><i class="fas fa-code"></i> <span data-i18n="skills.programming">Programming & Tools</span></h3>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Matlab</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>C/C++</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Git/GitHub</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="background: var(--secondary);">
+        <div class="section-header">
+            <h2 data-i18n="projects.title">Projects</h2>
+            <p data-i18n="projects.description">Innovative engineering projects showcasing technical expertise</p>
+        </div>
+        <div class="project-grid">
+            <div class="project-card animate">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1592925300420-4b9e1d0c6b9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="project-overlay">
+                    <h3 data-i18n="projects.project1.title">Automotive Shock Absorber Simulation</h3>
+                    <div class="project-date" data-i18n="projects.project1.date">May 2025 - June 2025</div>
+                    <p data-i18n="projects.project1.description">Advanced simulation of automotive suspension system using FEA techniques</p>
+                </div>
+            </div>
+            <div class="project-card animate">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="project-overlay">
+                    <h3 data-i18n="projects.project2.title">FEA Analysis of Mechanical Support</h3>
+                    <div class="project-date" data-i18n="projects.project2.date">March 2024 - May 2024</div>
+                    <p data-i18n="projects.project2.description">Design and finite element analysis of structural support for industrial applications</p>
+                </div>
+            </div>
+            <div class="project-card animate">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1603739903239-8b6e64c3b185?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="project-overlay">
+                    <h3 data-i18n="projects.project3.title">4-Cylinder Engine Simulation</h3>
+                    <div class="project-date" data-i18n="projects.project3.date">September 2023 - December 2023</div>
+                    <p data-i18n="projects.project3.description">Comprehensive simulation of a 4-cylinder combustion engine</p>
+                </div>
+            </div>
+            <div class="project-card animate">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80');"></div>
+                <div class="project-overlay">
+                    <h3 data-i18n="projects.project4.title">CNC-Controlled Robotic Arm</h3>
+                    <div class="project-date" data-i18n="projects.project4.date">February 2022 - July 2022</div>
+                    <p data-i18n="projects.project4.description">Design and implementation of an intelligent robotic arm system</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <h2 data-i18n="contact.title">Contact Me</h2>
+            <p data-i18n="contact.description">Feel free to reach out for collaborations or opportunities</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item animate">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>bouabid.yassine@outlook.com</p>
+                    </div>
+                </div>
+                <div class="contact-item animate">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 data-i18n="contact.phone">Phone</h3>
+                        <p>+212 653568835</p>
+                    </div>
+                </div>
+                <div class="contact-item animate">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3 data-i18n="contact.location">Location</h3>
+                        <p>Casablanca, Morocco</p>
+                    </div>
+                </div>
+                <div class="contact-item animate">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/bouabid-yassine</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Download Section -->
+    <section id="cv" class="cv-section">
+        <div class="cv-container">
+            <h2 data-i18n="cv.title">Download My CV</h2>
+            <p data-i18n="cv.description">Get a detailed overview of my professional background, skills, and qualifications. Available in multiple formats and languages.</p>
+            <div class="cv-btns">
+                <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> <span data-i18n="cv.btnEnglish">Download PDF (English)</span></a>
+                <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> <span data-i18n="cv.btnFrench">Download PDF (French)</span></a>
+                <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> <span data-i18n="cv.btnArabic">Download PDF (Arabic)</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="copyright" data-i18n="footer.copyright">&copy; 2025 Yassine Bouabid. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Translations data
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.profile": "Profile",
+                "nav.experience": "Experience",
+                "nav.skills": "Skills",
+                "nav.projects": "Projects",
+                "nav.contact": "Contact",
+                "nav.cv": "CV",
+                "hero.title": "Yassine <span>Bouabid</span>",
+                "hero.subtitle": "Future Engineer in Mechanical Design & Simulation",
+                "hero.description": "Specialized in CAD (CATIA V5, SolidWorks), FEA simulation (Abaqus, Ansys) and numerical modeling applied to smart mechanical systems. Passionate about innovation, robotics and advanced technologies in automotive and aerospace sectors.",
+                "hero.contactBtn": "Get in Touch",
+                "hero.projectsBtn": "View Projects",
+                "profile.title": "Professional Profile",
+                "profile.description": "Curious, rigorous and passionate about innovation, robotics and advanced technologies in automotive and aerospace sectors. Analytical mind, great adaptability, good communication skills.",
+                "profile.educationTitle": "Education",
+                "profile.education1": "Master in Numerical Design and Simulation in Mechanics at Faculty of Sciences Ain Chock - Center of Excellence in Mechatronics, Casablanca (2024-2026)",
+                "profile.education2": "Bachelor in Numerical Design and Simulation in Mechanics at Faculty of Sciences Ain Chock (2023-2024)",
+                "profile.certificationsTitle": "Certifications",
+                "profile.cert1": "Modeling and simulation of mechanical systems - Coursera",
+                "profile.cert2": "Automotive industrial engineering - Coursera",
+                "profile.cert3": "Digital manufacturing and design - Coursera",
+                "profile.cert4": "Finite element analysis with Abaqus - Skill-Lync",
+                "profile.cert5": "CATIA V5 - Beginner to advanced level - Udemy",
+                "profile.languagesTitle": "Languages & Interests",
+                "profile.languages": "Languages:",
+                "profile.langList": "Arabic (Native), French (Fluent), English (Fluent)",
+                "profile.interests": "Interests:",
+                "profile.interestsList": "Online competitions (coding, creativity, challenges), reading scientific and science-fiction books, writing technical articles for social media, creative video editing.",
+                "experience.title": "Professional Experience",
+                "experience.description": "Combining technical expertise with innovative problem-solving skills",
+                "experience.job1.title": "Mechanical Design Intern",
+                "experience.job1.date": "June - October 2024",
+                "experience.job1.company": "Commune de Oulad Ali Toualaa, Casablanca, Morocco",
+                "experience.job1.point1": "Updated 15 technical diagrams and contributed to documentary standardization",
+                "experience.job1.point2": "Conducted 5 CAD training sessions for technical staff, enhancing their 3D modeling skills",
+                "experience.job1.point3": "Developed automated calculation tools in VBA to accelerate technical file preparation",
+                "experience.job2.title": "Volunteer - Humanitarian Operations",
+                "experience.job2.date": "April 2024",
+                "experience.job2.company": "Association Lueur d'Espoir, Casablanca, Morocco",
+                "experience.job2.point1": "Organized and distributed over 200 food aid packages during Ramadan",
+                "experience.job2.point2": "Awareness and social actions for community solidarity",
+                "experience.job3.title": "Electromechanical Technician Intern (PFE)",
+                "experience.job3.date": "February - May 2021",
+                "experience.job3.company": "Sahara Plomb, Casablanca, Morocco",
+                "experience.job3.point1": "Preventive and corrective maintenance on industrial equipment, reducing machine downtime by 20%",
+                "experience.job3.point2": "Diagnosed and resolved failures in complex electrical and mechanical systems",
+                "experience.job3.point3": "Participated in drafting over 10 technical reports",
+                "skills.title": "Technical Skills",
+                "skills.description": "Expertise in mechanical design, simulation and advanced engineering tools",
+                "skills.design": "Design & Simulation",
+                "skills.engineering": "Mechanical Engineering",
+                "skills.matResistance": "Material Resistance",
+                "skills.thermo": "Thermodynamics",
+                "skills.aero": "Aerodynamics",
+                "skills.maintenance": "Industrial Maintenance",
+                "skills.programming": "Programming & Tools",
+                "projects.title": "Projects",
+                "projects.description": "Innovative engineering projects showcasing technical expertise",
+                "projects.project1.title": "Automotive Shock Absorber Simulation",
+                "projects.project1.date": "May 2025 - June 2025",
+                "projects.project1.description": "Advanced simulation of automotive suspension system using FEA techniques",
+                "projects.project2.title": "FEA Analysis of Mechanical Support",
+                "projects.project2.date": "March 2024 - May 2024",
+                "projects.project2.description": "Design and finite element analysis of structural support for industrial applications",
+                "projects.project3.title": "4-Cylinder Engine Simulation",
+                "projects.project3.date": "September 2023 - December 2023",
+                "projects.project3.description": "Comprehensive simulation of a 4-cylinder combustion engine",
+                "projects.project4.title": "CNC-Controlled Robotic Arm",
+                "projects.project4.date": "February 2022 - July 2022",
+                "projects.project4.description": "Design and implementation of an intelligent robotic arm system",
+                "contact.title": "Contact Me",
+                "contact.description": "Feel free to reach out for collaborations or opportunities",
+                "contact.phone": "Phone",
+                "contact.location": "Location",
+                "cv.title": "Download My CV",
+                "cv.description": "Get a detailed overview of my professional background, skills, and qualifications. Available in multiple formats and languages.",
+                "cv.btnEnglish": "Download PDF (English)",
+                "cv.btnFrench": "Download PDF (French)",
+                "cv.btnArabic": "Download PDF (Arabic)",
+                "footer.copyright": "© 2025 Yassine Bouabid. All Rights Reserved."
+            },
+            fr: {
+                "nav.home": "Accueil",
+                "nav.profile": "Profil",
+                "nav.experience": "Expérience",
+                "nav.skills": "Compétences",
+                "nav.projects": "Projets",
+                "nav.contact": "Contact",
+                "nav.cv": "CV",
+                "hero.title": "Yassine <span>Bouabid</span>",
+                "hero.subtitle": "Futur Ingénieur en Conception et Simulation Mécanique",
+                "hero.description": "Spécialisé en CAO (CATIA V5, SolidWorks), simulation FEA (Abaqus, Ansys) et modélisation numérique appliquée aux systèmes mécaniques intelligents. Passionné par l'innovation, la robotique et les technologies avancées dans les secteurs automobile et aéronautique.",
+                "hero.contactBtn": "Contactez-moi",
+                "hero.projectsBtn": "Voir les projets",
+                "profile.title": "Profil Professionnel",
+                "profile.description": "Curieux, rigoureux et passionné par l'innovation, la robotique et les technologies avancées dans les secteurs automobile et aéronautique. Esprit analytique, grande adaptabilité, bon sens de la communication.",
+                "profile.educationTitle": "Éducation",
+                "profile.education1": "Master en Conception et Simulation Numérique en Mécanique à la Faculté des Sciences Ain Chock - Centre d'Excellence Mécatronique, Casablanca (2024-2026)",
+                "profile.education2": "Licence en Conception et Simulation Numérique en Mécanique à la Faculté des Sciences Ain Chock (2023-2024)",
+                "profile.certificationsTitle": "Certifications",
+                "profile.cert1": "Modélisation et simulation de systèmes mécaniques - Coursera",
+                "profile.cert2": "Génie industriel automobile - Coursera",
+                "profile.cert3": "Fabrication numérique et conception - Coursera",
+                "profile.cert4": "Analyse par éléments finis avec Abaqus - Skill-Lync",
+                "profile.cert5": "CATIA V5 - Niveau débutant à avancé - Udemy",
+                "profile.languagesTitle": "Langues & Centres d'Intérêt",
+                "profile.languages": "Langues:",
+                "profile.langList": "Arabe (Maternelle), Français (Courant), Anglais (Courant)",
+                "profile.interests": "Centres d'intérêt:",
+                "profile.interestsList": "Participation à des compétitions en ligne (codage, créativité, défis), lecture d'ouvrages scientifiques et de science-fiction, écriture de mini-articles techniques pour les réseaux sociaux, montage vidéo créatif.",
+                "experience.title": "Expérience Professionnelle",
+                "experience.description": "Combinant expertise technique et compétences en résolution de problèmes innovants",
+                "experience.job1.title": "Stagiaire Concepteur Mécanique",
+                "experience.job1.date": "Juin - Octobre 2024",
+                "experience.job1.company": "Commune de Oulad Ali Toualaa, Casablanca, Maroc",
+                "experience.job1.point1": "Mis à jour 15 schémas techniques et contribué à la standardisation documentaire",
+                "experience.job1.point2": "Animé 5 sessions de formation en CAO pour le personnel technique, renforçant leurs compétences en modélisation 3D",
+                "experience.job1.point3": "Développé des outils de calcul automatisés en VBA pour accélérer l'élaboration des dossiers techniques",
+                "experience.job2.title": "Bénévole - Opérations Humanitaires",
+                "experience.job2.date": "Avril 2024",
+                "experience.job2.company": "Association Lueur d'Espoir, Casablanca, Maroc",
+                "experience.job2.point1": "Organisé et distribué plus de 200 aides alimentaires pendant le Ramadan",
+                "experience.job2.point2": "Sensibilisation et actions sociales pour la solidarité communautaire",
+                "experience.job3.title": "Stagiaire Technicien Électromécanique (PFE)",
+                "experience.job3.date": "Février - Mai 2021",
+                "experience.job3.company": "SAHARA PLOMB, Casablanca, Maroc",
+                "experience.job3.point1": "Maintenance préventive et corrective sur divers équipements industriels, réduisant les arrêts machines de 20 %",
+                "experience.job3.point2": "Diagnostiqué et résolu des pannes sur des systèmes électriques et mécaniques complexes",
+                "experience.job3.point3": "Participation à la rédaction de plus de 10 rapports techniques",
+                "skills.title": "Compétences Techniques",
+                "skills.description": "Expertise en conception mécanique, simulation et outils d'ingénierie avancés",
+                "skills.design": "Conception & Simulation",
+                "skills.engineering": "Ingénierie Mécanique",
+                "skills.matResistance": "Résistance des Matériaux",
+                "skills.thermo": "Thermodynamique",
+                "skills.aero": "Aérodynamique",
+                "skills.maintenance": "Maintenance Industrielle",
+                "skills.programming": "Programmation & Outils",
+                "projects.title": "Projets",
+                "projects.description": "Projets d'ingénierie innovants mettant en valeur l'expertise technique",
+                "projects.project1.title": "Simulation d'un amortisseur automobile",
+                "projects.project1.date": "Mai 2025 - Juin 2025",
+                "projects.project1.description": "Simulation avancée du système de suspension automobile utilisant des techniques FEA",
+                "projects.project2.title": "Conception et analyse par éléments finis d'un support mécanique",
+                "projects.project2.date": "Mars 2024 - Mai 2024",
+                "projects.project2.description": "Conception et analyse par éléments finis d'un support structurel pour applications industrielles",
+                "projects.project3.title": "Simulation d'un moteur 4 cylindres",
+                "projects.project3.date": "Septembre 2023 - Décembre 2023",
+                "projects.project3.description": "Simulation complète d'un moteur à combustion 4 cylindres",
+                "projects.project4.title": "Bras robotisé intelligent commandé par CNC",
+                "projects.project4.date": "Février 2022 - Juillet 2022",
+                "projects.project4.description": "Conception et mise en œuvre d'un système de bras robotisé intelligent",
+                "contact.title": "Contactez-moi",
+                "contact.description": "N'hésitez pas à me contacter pour des collaborations ou des opportunités",
+                "contact.phone": "Téléphone",
+                "contact.location": "Localisation",
+                "cv.title": "Télécharger mon CV",
+                "cv.description": "Obtenez un aperçu détaillé de mon parcours professionnel, de mes compétences et de mes qualifications. Disponible en plusieurs formats et langues.",
+                "cv.btnEnglish": "Télécharger PDF (Anglais)",
+                "cv.btnFrench": "Télécharger PDF (Français)",
+                "cv.btnArabic": "Télécharger PDF (Arabe)",
+                "footer.copyright": "© 2025 Yassine Bouabid. Tous droits réservés."
+            },
+            ar: {
+                "nav.home": "الرئيسية",
+                "nav.profile": "الملف الشخصي",
+                "nav.experience": "الخبرة",
+                "nav.skills": "المهارات",
+                "nav.projects": "المشاريع",
+                "nav.contact": "اتصل",
+                "nav.cv": "السيرة الذاتية",
+                "hero.title": "ياسين <span>بو عبيد</span>",
+                "hero.subtitle": "مهندس مستقبلي في التصميم والمحاكاة الميكانيكية",
+                "hero.description": "متخصص في التصميم بمساعدة الكمبيوتر (CATIA V5، SolidWorks)، ومحاكاة العناصر المحدودة (Abaqus، Ansys) والنمذجة الرقمية المطبقة على الأنظمة الميكانيكية الذكية. شغوف بالابتكار والروبوتات والتقنيات المتقدمة في قطاعات السيارات والفضاء.",
+                "hero.contactBtn": "تواصل معي",
+                "hero.projectsBtn": "عرض المشاريع",
+                "profile.title": "الملف المهني",
+                "profile.description": "فضولي، دقيق وشغوف بالابتكار والروبوتات والتقنيات المتقدمة في قطاعات السيارات والفضاء. عقلية تحليلية، تكيف كبير، مهارات تواصل جيدة.",
+                "profile.educationTitle": "التعليم",
+                "profile.education1": "ماجستير في التصميم والمحاكاة الرقمية في الميكانيكا بكلية العلوم عين الشق - مركز التميز في الميكاترونيك، الدار البيضاء (2024-2026)",
+                "profile.education2": "إجازة في التصميم والمحاكاة الرقمية في الميكانيكا بكلية العلوم عين الشق (2023-2024)",
+                "profile.certificationsTitle": "الشهادات",
+                "profile.cert1": "نمذجة ومحاكاة الأنظمة الميكانيكية - كورسيرا",
+                "profile.cert2": "الهندسة الصناعية للسيارات - كورسيرا",
+                "profile.cert3": "التصنيع الرقمي والتصميم - كورسيرا",
+                "profile.cert4": "تحليل العناصر المحدودة باستخدام Abaqus - Skill-Lync",
+                "profile.cert5": "CATIA V5 - من المبتدئ إلى المتقدم - Udemy",
+                "profile.languagesTitle": "اللغات والاهتمامات",
+                "profile.languages": "اللغات:",
+                "profile.langList": "العربية (الأم)، الفرنسية (بطلاقة)، الإنجليزية (بطلاقة)",
+                "profile.interests": "الاهتمامات:",
+                "profile.interestsList": "المشاركة في المسابقات عبر الإنترنت (البرمجة، الإبداع، التحديات)، قراءة الكتب العلمية والخيال العلمي، كتابة مقالات تقنية مبسطة لوسائل التواصل الاجتماعي، مونتاج الفيديو الإبداعي.",
+                "experience.title": "الخبرة المهنية",
+                "experience.description": "الجمع بين الخبرة التقنية ومهارات حل المشكلات المبتكرة",
+                "experience.job1.title": "مصمم ميكانيكي متدرب",
+                "experience.job1.date": "يونيو - أكتوبر 2024",
+                "experience.job1.company": "بلدية أولاد علي طولاعة، الدار البيضاء، المغرب",
+                "experience.job1.point1": "تحديث 15 مخططًا فنيًا والمساهمة في توحيد التوثيق",
+                "experience.job1.point2": "تقديم 5 جلسات تدريبية في التصميم بمساعدة الكمبيوتر للطاقم الفني، وتعزيز مهاراتهم في النمذجة ثلاثية الأبعاد",
+                "experience.job1.point3": "تطوير أدوات حساب آلية باستخدام VBA لتسريع إعداد الملفات الفنية",
+                "experience.job2.title": "متطوع - عمليات إنسانية",
+                "experience.job2.date": "أبريل 2024",
+                "experience.job2.company": "جمعية بصيص أمل، الدار البيضاء، المغرب",
+                "experience.job2.point1": "تنظيم وتوزيع أكثر من 200 مساعدة غذائية خلال رمضان",
+                "experience.job2.point2": "توعية وإجراءات اجتماعية من أجل التضامن المجتمعي",
+                "experience.job3.title": "فني كهروميكانيكي متدرب (مشروع نهاية الدراسة)",
+                "experience.job3.date": "فبراير - مايو 2021",
+                "experience.job3.company": "ساهارا بلومب، الدار البيضاء، المغرب",
+                "experience.job3.point1": "صيانة وقائية وتصحيحية على معدات صناعية مختلفة، مما قلل من توقفات الآلات بنسبة 20٪",
+                "experience.job3.point2": "تشخيص وإصلاح الأعطال في الأنظمة الكهربائية والميكانيكية المعقدة",
+                "experience.job3.point3": "المشاركة في صياغة أكثر من 10 تقارير فنية",
+                "skills.title": "المهارات التقنية",
+                "skills.description": "خبرة في التصميم الميكانيكي والمحاكاة وأدوات الهندسة المتقدمة",
+                "skills.design": "التصميم والمحاكاة",
+                "skills.engineering": "الهندسة الميكانيكية",
+                "skills.matResistance": "مقاومة المواد",
+                "skills.thermo": "الديناميكا الحرارية",
+                "skills.aero": "الديناميكا الهوائية",
+                "skills.maintenance": "الصيانة الصناعية",
+                "skills.programming": "البرمجة والأدوات",
+                "projects.title": "المشاريع",
+                "projects.description": "مشاريع هندسية مبتكرة تعرض الخبرة التقنية",
+                "projects.project1.title": "محاكاة ممتص الصدمات للسيارات",
+                "projects.project1.date": "مايو 2025 - يونيو 2025",
+                "projects.project1.description": "محاكاة متقدمة لنظام تعليق السيارات باستخدام تقنيات العناصر المحدودة",
+                "projects.project2.title": "تصميم وتحليل العناصر المحدودة لدعامة ميكانيكية",
+                "projects.project2.date": "مارس 2024 - مايو 2024",
+                "projects.project2.description": "تصميم وتحليل العناصر المحدودة للدعامة الهيكلية للتطبيقات الصناعية",
+                "projects.project3.title": "محاكاة محرك 4 سلندر",
+                "projects.project3.date": "سبتمبر 2023 - ديسمبر 2023",
+                "projects.project3.description": "محاكاة شاملة لمحرك احتراق 4 سلندر",
+                "projects.project4.title": "ذراع روبوتي ذكي يتحكم به CNC",
+                "projects.project4.date": "فبراير 2022 - يوليو 2022",
+                "projects.project4.description": "تصميم وتنفيذ نظام ذراع روبوتي ذكي",
+                "contact.title": "اتصل بي",
+                "contact.description": "لا تتردد في التواصل للتعاون أو الفرص",
+                "contact.phone": "الهاتف",
+                "contact.location": "الموقع",
+                "cv.title": "تحميل سيرتي الذاتية",
+                "cv.description": "احصل على نظرة مفصلة عن خلفيتي المهنية ومهاراتي ومؤهلاتي. متاح بتنسيقات ولغات متعددة.",
+                "cv.btnEnglish": "تحميل PDF (الإنجليزية)",
+                "cv.btnFrench": "تحميل PDF (الفرنسية)",
+                "cv.btnArabic": "تحميل PDF (العربية)",
+                "footer.copyright": "© 2025 ياسين بو عبيد. جميع الحقوق محفوظة."
+            }
+        };
+
+        // Initialize with English
+        let currentLang = 'en';
+        let darkMode = false;
+
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const languageToggle = document.getElementById('languageToggle');
+        const languageSelector = document.getElementById('languageSelector');
+        const languageOptions = document.querySelectorAll('.language-option');
+        const animateElements = document.querySelectorAll('.animate');
+
+        // Create particles for background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 8 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Dark Mode Toggle
+        darkModeToggle.addEventListener('click', () => {
+            darkMode = !darkMode;
+            document.body.classList.toggle('dark-mode', darkMode);
+            darkModeToggle.innerHTML = darkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            
+            // Save preference
+            localStorage.setItem('darkMode', darkMode);
+        });
+
+        // Language Toggle
+        languageToggle.addEventListener('click', () => {
+            languageSelector.style.display = languageSelector.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Language Selection
+        languageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                changeLanguage(lang);
+                languageSelector.style.display = 'none';
+            });
+        });
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update RTL for Arabic
+            document.body.classList.toggle('arabic-mode', lang === 'ar');
+            
+            // Save preference
+            localStorage.setItem('language', lang);
+        }
+
+        // Initialize from localStorage
+        function initSettings() {
+            // Dark mode
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                darkMode = true;
+            }
+            
+            // Language
+            const savedLang = localStorage.getItem('language') || 'en';
+            changeLanguage(savedLang);
+        }
+
+        // Scroll animation
+        function handleScroll() {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight * 0.85) {
+                    element.classList.add('show');
+                }
+            });
+        }
+
+        // Close language selector when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!languageToggle.contains(e.target) && !languageSelector.contains(e.target)) {
+                languageSelector.style.display = 'none';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initSettings();
+            handleScroll();
+            
+            window.addEventListener('scroll', handleScroll);
+        });
+    </script>
+</body>
+</html>
